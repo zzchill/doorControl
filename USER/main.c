@@ -95,22 +95,20 @@ static void LcdTask(void *para)
 		}
 		if (revStatus == pdPASS)		//如果接收到了数据
 		{
-//			sprintf(debug, "re:%u", messeg.data);
-//			LCD_write_english_string(0, 2, debug);
 			if (messeg.type == REMOTE_TYPE)
 			{
-				DealRemoteState(messeg.data);
+				DealRemoteState(messeg.data);		//rc522状态机
 			}
 			else if (messeg.type == RC522_TYPE)
 			{
-				DealRC522State(messeg.data);
+				DealRC522State(messeg.data);	//红外按键状态机
 			}
 		}
 		else
 		{
 			resetLcd();
 		}
-		DealLcdShow(&messeg);
+		DealLcdShow(&messeg);				//屏幕显示任务
 	}	
 }
 
@@ -155,8 +153,6 @@ static void rc522Task(void *para)
 		{				
 			messeg.data = cardId;
 			xQueueSend(inputQueue, &messeg, 0);
-//			sprintf(debug, "id:%u", messeg.data);
-//			LCD_write_english_string(0, 1, debug);
 		}
 	}
 }
@@ -197,6 +193,6 @@ void BSP_Init(void)
 	
 	LCD_write_english_string(0, 0, "loding...");
 	
-	InfoInit();
+	InfoInit();		//加载硬盘数据到内存
 }
 

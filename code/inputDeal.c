@@ -12,17 +12,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MEANU_ITEM_NUM			10
-#define SCREEN_SHOW_MAX_LINE	6
+#define MEANU_ITEM_NUM			10		 //菜单页的项目数
+#define SCREEN_SHOW_MAX_LINE	6		//屏幕最多能显示行数
 
 
-static uint8_t workMode = userMode;
-static uint8_t nowPage = Standby;
+static uint8_t workMode = userMode;		//工作状态，如果卡丢了就修改这个成rootMode重新烧录后进行添加管理员数据
+static uint8_t nowPage = Standby;		//当前工作页
 
-static uint16_t cursors = 0;
+static uint16_t cursors = 0;			//当前光标位置
 
-static uint32_t cardToOps;
-static struct UserData input;
+static uint32_t cardToOps;				//一个传输变量不必在意
+static struct UserData input;			//输入页面缓冲区
 
 									
 
@@ -42,6 +42,7 @@ void DealRC522State(uint32_t data)
 {
 	switch (nowPage)
 	{
+		//当处于闲置界面时读到了卡数据就改变状态
 		case Standby: 
 			if ((findUserCard(data) != -1) || (findRootCard(data) != -1))
 			{
@@ -102,7 +103,7 @@ void DealRemoteState(uint32_t data)
 {
 	static uint16_t input_index = 0;
 	static uint16_t ops_page_type = 0;
-	if (nowPage == Standby)
+	if (nowPage == Standby)			//如果处于闲置界面有按键按下进入菜单
 	{
 		nowPage = menuPage;
 		return;
@@ -123,7 +124,7 @@ void DealRemoteState(uint32_t data)
 			//当不同界面的显示界面切换回来时需要先限幅
 			if (nowPage == menuPage)
 			{
-				cursors = (cursors < MEANU_ITEM_NUM - 1) ? (cursors) : (MEANU_ITEM_NUM - 1);
+				cursors = (cursors < MEANU_ITEM_NUM - 1) ? (cursors) : (MEANU_ITEM_NUM - 1);	
 			}
 			else if (nowPage == modifyPage || nowPage == dataDeletePage)
 			{
@@ -136,7 +137,7 @@ void DealRemoteState(uint32_t data)
 		case REMOTE_NEXT_ID:
 			if (nowPage == menuPage)
 			{
-				cursors = (cursors < MEANU_ITEM_NUM - 1) ? (cursors + 1) : (MEANU_ITEM_NUM - 1);
+				cursors = (cursors < MEANU_ITEM_NUM - 1) ? (cursors + 1) : (MEANU_ITEM_NUM - 1);	//限制光标的行数
 			}
 			else if (nowPage == modifyPage || nowPage == dataDeletePage)
 			{
@@ -148,7 +149,7 @@ void DealRemoteState(uint32_t data)
 		case REMOTE_PAUSE_ID:
 			if (nowPage == menuPage)
 			{
-				
+				//状态gei
 				if (cursors == 0 && workMode == rootMode) 		{ nowPage = addUserPage;}
 				else if (cursors == 1 && workMode == rootMode) 	{ nowPage = dataDeletePage;cursors = 0;}
 				else if (cursors == 2) 							{ nowPage = rootLoginPage;}
@@ -160,6 +161,7 @@ void DealRemoteState(uint32_t data)
 				else if (cursors == 8 && workMode == rootMode) 	{ nowPage = noticePage;}
 				else if (cursors == 9 && workMode == rootMode) 	{ nowPage = noticePage;}
 				else {nowPage = hasNoRight;}
+				
 				ops_page_type = nowPage;
 			}
 			else if (nowPage == systemInfoPage || nowPage == makerInfo)
@@ -329,6 +331,7 @@ void DealRemoteState(uint32_t data)
 	};
 }
 
+//根据状态进行显示和处理
 void DealLcdShow(struct messegeFrame* messege)
 {
 	LCD_clear();

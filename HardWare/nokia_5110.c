@@ -1,5 +1,5 @@
 #include "nokia_5110.h"
-
+#include "lcdlib.h"
 #include "bmp_pixel.h"
 #include "write_chinese_string_pixel.h"
 #include "english_6x8_pixel.h"
@@ -38,23 +38,43 @@ void LCD_IO_Init(void)
  
 
 void delay_1us(void)                 //1us延时函数
-  {
-   unsigned int i;
-  for(i=0;i<1000;i++);
-  }
+{
+	volatile unsigned int t;
+	t = 11;
+    while (t != 0)
+    {
+      t--;
+    }
+}
 
-  void delay_1ms(void)                 //1ms延时函数
-  {
-   unsigned int i;
-   for (i=0;i<1140;i++);
-  }
+void delay_1ms(void)                 //1ms延时函数
+{
+	delay_nus(1000);
+}
   
-void delay_nms(unsigned int n)       //N ms延时函数
+void delay_nus(unsigned int n)       //N us延时函数
+{
+  volatile unsigned int num;
+  volatile unsigned int t;
+ 
+  for (num = 0; num < n; num++)
   {
-   unsigned int i=0;
-   for (i=0;i<n;i++)
-   delay_1ms();
+    t = 11;
+    while (t != 0)
+    {
+      t--;
+    }
   }
+}
+
+void delay_nms(unsigned int n)       //N ms延时函数
+{
+	volatile unsigned int num;
+	for (num = 0; num < n; num++)
+	{
+		delay_nus(1000);
+	}
+}
 
 
 void LCD_init(void)
@@ -332,4 +352,6 @@ void LCD_Show_Pic(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t *
 		}
     }
 }
+
+
 

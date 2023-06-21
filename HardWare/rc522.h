@@ -125,15 +125,8 @@
 #define ADDMONEY	0xa4
 
 //
-//#define  spi_cs 1;
-//sbit  spi_ck=P0^6;
-//sbit  spi_mosi=P0^7;
-//sbit  spi_miso=P4^1;
-//sbit  spi_rst=P2^7;
-#define SPIReadByte()	SPIWriteByte(0)
-u8 SPIWriteByte(u8 byte);
+
 void SPI1_Init(void);
-//void SPI2_Init(void);
 
 #define SET_SPI_CS  (GPIOF->BSRR=0X01)
 #define CLR_SPI_CS  (GPIOF->BRR=0X01)
@@ -171,31 +164,6 @@ char             PcdAuthState               ( u8 ucAuth_mode, u8 ucAddr, u8 * pK
 char             PcdWrite                   ( u8 ucAddr, u8 * pData );
 char             PcdRead                    ( u8 ucAddr, u8 * pData );
 
-#define FLASH_SAVE_ADDR  0X08008000
-#define FLASH_USER_DATA  0X08008004
-#define NUM_MAX 1000
-#define NUM_ROOT_MAX 6
-#define FlASH_ROOT_NUM_DATA  0X08008004+4*NUM_MAX
-#define FlASH_ROOT_DATA  0X08008004+4*NUM_MAX+4
-
-
-
-void ShowID(u8 *p);	 //显示卡的卡号，以十六进制显示
-void clear_mode(void);
-void read_mode();
-void write_mode();
-void information_init();
-void root_mode(u8 *blash);
-void initSN();
-
-u8 logout();
-u8 check_rootkey();
-extern char* POINT_LNG;
-extern char* POINT_LAT;
-extern char* POINT_LNG_ON;
-extern char* POINT_LAT_ON;
-extern char* POINT_LNG_OFF;
-extern char* POINT_LAT_OFF;
 
 
 

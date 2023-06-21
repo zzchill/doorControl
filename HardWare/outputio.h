@@ -13,10 +13,10 @@
 //Copyright(C) 广州市星翼电子科技有限公司 2009-2019
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 
-#define LED0 PAout(8)// PA8
-#define LED1 PAout(9)// PA9
-#define Door1 PBout(8)// PB8	
-void Door_IO_init();
+#define LED0 PAout(9)// PA8
+#define LED1 PAout(10)// PA9
+#define DOOR1 PBout(8)// PB8	
+void Door_IO_init(void);
 void LED_Init(void);//初始化
 
 		 				    

@@ -30,6 +30,7 @@
 ..\obj\nokia_5110.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\nokia_5110.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\nokia_5110.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\nokia_5110.o: ..\HardWare\lcdlib.h
 ..\obj\nokia_5110.o: ..\HardWare\bmp_pixel.h
 ..\obj\nokia_5110.o: ..\HardWare\write_chinese_string_pixel.h
 ..\obj\nokia_5110.o: ..\HardWare\english_6x8_pixel.h

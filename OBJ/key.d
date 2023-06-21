@@ -30,13 +30,3 @@
 ..\obj\key.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\key.o: ..\HardWare\key.h
 ..\obj\key.o: ..\SYSTEM\sys\sys.h
-..\obj\key.o: ..\SYSTEM\delay\delay.h
-..\obj\key.o: ..\HardWare\rc522.h
-..\obj\key.o: ..\SYSTEM\usart\usart.h
-..\obj\key.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\key.o: ..\HardWare\outputio.h
-..\obj\key.o: ..\HardWare\stmflash.h
-..\obj\key.o: ..\HardWare\nokia_5110.h
-..\obj\key.o: ..\HardWare\lcdlib.h
-..\obj\key.o: ..\HardWare\remote.h
-..\obj\key.o: ..\HardWare\userinfo.h

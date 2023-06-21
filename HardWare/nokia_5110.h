@@ -1,3 +1,5 @@
+#ifndef __NOKIA_5110_H__
+#define __NOKIA_5110_H__
 /*
 2007-2-1 12:06
 nokia 5110 driver program for 51 mcu
@@ -8,6 +10,9 @@ zhaoliang0801@gmail.com
 */
 
 #include "sys.h"
+
+
+
 #define SCLK PBout(10)		// pin 2	 header	5
 #define SDIN PBout(11)// pin 3	 header	4
 #define LCD_DC PBout(14)	// pin 4	 header	3
@@ -28,5 +33,9 @@ void LCD_draw_bmp_pixel(unsigned char X,unsigned char Y,unsigned char *map,
                   unsigned char Pix_x,unsigned char Pix_y);
 void LCD_write_byte(unsigned char dat, unsigned char dc);
 void LCD_set_XY(unsigned char X, unsigned char Y);
-void delay_1us(void);                 
- 
+void delay_1us(void);   
+void delay_1ms(void); 
+void delay_nus(unsigned int n); 
+void delay_nms(unsigned int n);
+
+#endif

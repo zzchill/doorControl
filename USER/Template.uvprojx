@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -188,7 +188,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HardWare;..\FreeRTOS\include;..\FreeRTOS\portable\ARM_CM3</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HardWare;..\FreeRTOS\include;..\FreeRTOS\portable\ARM_CM3;..\code</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -383,6 +383,11 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\FreeRTOS\include\FreeRTOSConfig.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
@@ -403,11 +408,6 @@
           <GroupName>SYSTEM</GroupName>
           <Files>
             <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
-            </File>
-            <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SYSTEM\sys\sys.c</FilePath>
@@ -416,6 +416,11 @@
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SYSTEM\usart\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -593,14 +598,9 @@
               <FilePath>..\HardWare\outputio.c</FilePath>
             </File>
             <File>
-              <FileName>userinfo.c</FileName>
+              <FileName>lcdlib.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HardWare\userinfo.c</FilePath>
-            </File>
-            <File>
-              <FileName>key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HardWare\key.c</FilePath>
+              <FilePath>..\HardWare\lcdlib.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -656,6 +656,21 @@
               <FileName>port.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FreeRTOS\portable\ARM_CM3\port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>UserCode</GroupName>
+          <Files>
+            <File>
+              <FileName>userinfo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\userinfo.c</FilePath>
+            </File>
+            <File>
+              <FileName>inputDeal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\inputDeal.c</FilePath>
             </File>
           </Files>
         </Group>
